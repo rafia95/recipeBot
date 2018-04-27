@@ -58,7 +58,8 @@ def send_message(token, recipient, text):
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         for each_recipe in each_div.find_all('a', href=True):
             print("recipe link :",each_recipe['href'])
-            if each_recipe['href'].startswith("/clicks")
+            reclink="",each_recipe['href']
+            if reclink.startswith("/clicks")
                 msg=each_recipe['href']
                 print("the msg is ----------",msg)
             for each_img in each_recipe.find_all('img', alt=True):
