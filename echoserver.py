@@ -6,8 +6,11 @@ import urllib3
 app = Flask(__name__)
 
 PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUPKNB1KP9ZCbZCDbNc6ouUfTzaYJqJk7ne5XSohgxnjT6zV31MFYtyBnJIpcbl3jqAUQbZAcOzZB2XIJgl5ySRatxiPwZAjZADLmHNAZDZD'
-# the webpage url to be accessed 
-wiki = "http://www.tastespotting.com/browse/2"
+
+http = urllib3.PoolManager()
+r = http.request('GET', 'http://www.tastespotting.com/browse/2')
+print('data',r.data)
+
 
 # get the webpage using the library
 page = urllib3.urlopen(wiki)
