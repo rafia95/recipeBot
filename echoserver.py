@@ -10,7 +10,7 @@ PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUP
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/2')
 # import beautifulsoup to parse data
-from bs4 import BeautifulSoup
+import BeautifulSoup4
 
 #Parse data
 data = BeautifulSoup(page,'html.parser')
