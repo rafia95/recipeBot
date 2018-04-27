@@ -10,7 +10,6 @@ PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUP
 def handle_verification():
   print("Handling Verification.")
   print(request.get_data())
-  print(request.args.len)
   print(request.args[0][0])
   print(request.args[1][1])
   print(request.values)
