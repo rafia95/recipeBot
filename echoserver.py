@@ -13,7 +13,7 @@ r = http.request('GET', 'http://www.tastespotting.com/browse/2')
 import BeautifulSoup4
 
 #Parse data
-data = BeautifulSoup(page,'html.parser')
+data = BeautifulSoup4(page,'html.parser')
 
 for each_div in data.find_all("div", { "class": "trendspotted-item"}):
     for each_recipe in each_div.find_all('a', href=True):
