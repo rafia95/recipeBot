@@ -58,7 +58,7 @@ def send_message(token, recipient, text):
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         for each_recipe in each_div.find_all('a', href=True):
             print("recipe link :",each_recipe['href'])
-			print(each_recipe['href'].startswith('/click'))
+            print(each_recipe['href'].startswith('/click'))
             if each_recipe['href'].startswith('/click'):
                 msg=each_recipe['href']
                 print("the msg is ----------",msg)
