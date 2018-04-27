@@ -9,11 +9,23 @@ PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUP
 
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/2')
-print('data',r.data)
+# import beautifulsoup to parse data
+from bs4 import BeautifulSoup
 
+#Parse data
+data = BeautifulSoup(page,'html.parser')
 
-# get the webpage using the library
-page = urllib3.urlopen(wiki)
+for each_div in data.find_all("div", { "class": "trendspotted-item"}):
+    for each_recipe in each_div.find_all('a', href=True):
+		print("recipe link : " , each_recipe['href'])
+		
+
+		for each_img in each_recipe.find_all('img', alt=True):
+			print(each_img['src'])
+			
+for each_div in data.find_all("div", { "class": "trendspotted-item"}):
+	for each_caption in each_div.find("p", { "class": "photo_caption"}):
+		print("......", each_caption)
 
 @app.route('/', methods=['GET'])
 def handle_verification():
