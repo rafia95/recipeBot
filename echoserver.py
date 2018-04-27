@@ -2,7 +2,7 @@ from flask import Flask, request
 import json
 import requests
 # get the urllib2 library, to fetch the web page
-import urllib2
+import urllib3
 app = Flask(__name__)
 
 PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUPKNB1KP9ZCbZCDbNc6ouUfTzaYJqJk7ne5XSohgxnjT6zV31MFYtyBnJIpcbl3jqAUQbZAcOzZB2XIJgl5ySRatxiPwZAjZADLmHNAZDZD'
@@ -10,7 +10,7 @@ PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUP
 wiki = "http://www.tastespotting.com/browse/2"
 
 # get the webpage using the library
-page = urllib2.urlopen(wiki)
+page = urllib3.urlopen(wiki)
 
 @app.route('/', methods=['GET'])
 def handle_verification():
