@@ -24,6 +24,8 @@ def handle_verification():
     return request.args.get('hub.challenge', '')
   else:
     print("Verification failed!")
+    print("getting here")
+	print(r)
     data = BeautifulSoup(r,'html.parser')
     print(data)
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
