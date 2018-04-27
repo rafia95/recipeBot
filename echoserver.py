@@ -61,7 +61,7 @@ def send_message(token, recipient, text):
             print(each_recipe['href'].startswith('/click'))
             if each_recipe['href'].startswith('/click'):
                 msg=each_recipe['href']
-                print("the msg is ----------",msg)
+                print("the msg is ----------",msg[:13])
             for each_img in each_recipe.find_all('img', alt=True):
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
