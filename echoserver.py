@@ -26,7 +26,7 @@ def handle_verification():
     print("Verification failed!")
     print("getting here")
     print(r.data)
-    data = BeautifulSoup(r,'html.parser')
+    data = BeautifulSoup(r.data,'html.parser')
     print(data)
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         for each_recipe in each_div.find_all('a', href=True):
