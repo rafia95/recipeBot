@@ -52,7 +52,7 @@ def messaging_events(payload):
 def send_message(token, recipient, text):
     """Send the message text to recipient with id recipient.
     """
-    r = http.request('GET', 'http://www.tastespotting.com/browse/2')
+    r = http.request('GET', 'http://www.tastespotting.com/browse/3')
     msg=""
     data = BeautifulSoup(r.data,'html.parser')
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
