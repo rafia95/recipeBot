@@ -33,7 +33,7 @@ def handle_verification():
             print("recipe link :",each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 print(each_img['src'])
-		for each_caption in each_div.find("p", { "class": "photo_caption"}):
+        for each_caption in each_div.find("p", { "class": "photo_caption"}):
             print("......", each_caption)	
         
     return 'Error, wrong validation token'
