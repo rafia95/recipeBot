@@ -52,7 +52,7 @@ def messaging_events(payload):
 def send_message(token, recipient, text):
     """Send the message text to recipient with id recipient.
     """
-    r = http.request('GET', 'http://www.tastespotting.com/browse/3')
+    r = http.request('GET', 'http://www.tastespotting.com/browse/4')
     msg=""
     data = BeautifulSoup(r.data,'html.parser')
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
@@ -60,7 +60,7 @@ def send_message(token, recipient, text):
             print("recipe link :",each_recipe['href'])
             print(each_recipe['href'].startswith('/click'))
             if each_recipe['href'].startswith('/click'):
-                msg+=each_recipe['href'][:-13]
+                msg=each_recipe['href'][16:-13]
                 print("the msg is ----------",msg[:-13])
             for each_img in each_recipe.find_all('img', alt=True):
                 print(each_img['src'])
