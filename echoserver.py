@@ -102,7 +102,6 @@ def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
       """
       print("calling retrieving_data func")
-      print("printing msg3 here",retrieving_data.msg3)
       retrieving_data()
       print("printing msg3 there",retrieving_data.msg3)
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
