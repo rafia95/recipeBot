@@ -88,11 +88,10 @@ def retrieving_data():
             print("recipe link :",each_recipe['href'])
             print(each_recipe['href'].startswith('/click'))
             if each_recipe['href'].startswith('/click'):
-                msg=each_recipe['href'][16:-13]
-                print("the msg is ----------",msg[:-13])
+                retrieving_data.msg=each_recipe['href'][16:-13]
+                print("the msg is ----------",retrieving_data.msg[:-13])
             for each_img in each_recipe.find_all('img', alt=True):
-                msg2=each_img['src']
-                print(each_img['src'])
+                retrieving_data.msg2=each_img['src']
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
 			
@@ -115,12 +114,12 @@ def send_message(token, recipient, text):
                               "elements":[
                                          {
                                           "title":retrieving_data.msg3,
-                                          "image_url":msg2,
+                                          "image_url":retrieving_data.msg2,
                                           "buttons":[
                                                     {
                                                       "type": "web_url",
                                                       "title": "Click here to read more!",
-                                                      "url": msg,
+                                                      "url": retrieving_data.msg,
                                                     },
                                                     {
                                                       "type":"element_share"
