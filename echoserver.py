@@ -64,9 +64,10 @@ def handle_messages():
   print("Handling Messages")
   payload = request.get_data()
   print(payload)
+  print("calling retrieving_data func")
+  retrieving_data()
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
-    retrieving_data()
     send_message(PAT, sender, message)
   return "ok"
 
@@ -98,7 +99,7 @@ def retrieving_data():
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             msg3=each_caption
-            print("......", each_caption)
+            print("......msg3", each_caption, msg3)
 			
 			
 def send_message(token, recipient, text):
