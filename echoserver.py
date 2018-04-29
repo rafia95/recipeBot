@@ -8,7 +8,7 @@ app = Flask(__name__)
 PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUPKNB1KP9ZCbZCDbNc6ouUfTzaYJqJk7ne5XSohgxnjT6zV31MFYtyBnJIpcbl3jqAUQbZAcOzZB2XIJgl5ySRatxiPwZAjZADLmHNAZDZD'
 
 http = urllib3.PoolManager()
-r = http.request('GET', 'http://www.tastespotting.com/browse/2')
+r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
 
@@ -79,11 +79,9 @@ def messaging_events(payload):
     else:
       yield event["sender"]["id"], "I can't echo this"
 
-
-def send_message(token, recipient, text):
-    """Send the message text to recipient with id recipient.
-    """
-    r = http.request('GET', 'http://www.tastespotting.com/browse/4')
+def retrieving_data():
+  """Send the recipe and increment the counter to send different each time"""
+   r = http.request('GET', 'http://www.tastespotting.com/browse/1')
     msg=""
     data = BeautifulSoup(r.data,'html.parser')
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
@@ -99,6 +97,12 @@ def send_message(token, recipient, text):
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             msg3=each_caption
             print("......", each_caption)
+			
+			
+def send_message(token, recipient, text):
+    """Send the message text to recipient with id recipient.
+    """
+   
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
