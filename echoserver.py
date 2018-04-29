@@ -77,7 +77,7 @@ def send_message(token, recipient, text):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":"Goowi will contact you shortly with the answer :).",
+                                          "title":msg,
                                           "image_url":"https://www.goowi.com/faces/javax.faces.resource/images/logo.png",
                                           "buttons":[
                                                     {
