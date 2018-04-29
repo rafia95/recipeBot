@@ -114,7 +114,7 @@ def send_message(token, recipient, text):
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
-                                                      "type": "web-url",
+                                                      "type": "web_url",
                                                       "title": "Click here to read more!",
                                                       "url": msg,
                                                     },
