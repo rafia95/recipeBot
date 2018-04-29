@@ -98,6 +98,7 @@ def retrieving_data():
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             msg3=each_caption
             print("......", each_caption)
+    return msg,msg2,msg3
 			
 			
 def send_message(token, recipient, text):
@@ -114,7 +115,7 @@ def send_message(token, recipient, text):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":msg3,
+                                          "title":retrieving_data.msg3,
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
