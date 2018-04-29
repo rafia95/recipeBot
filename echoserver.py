@@ -11,6 +11,7 @@ http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/2')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
+
 response = requests.post(
     "https://graph.facebook.com/v2.6/me/thread_settings?access_token"+PAT,
     json={
@@ -96,6 +97,7 @@ def send_message(token, recipient, text):
                 msg2=each_img['src']
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
+            msg3=each_caption
             print("......", each_caption)
     r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
@@ -108,9 +110,14 @@ def send_message(token, recipient, text):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":msg,
-                                          "image_url":msg,
+                                          "title":msg3,
+                                          "image_url":msg2,
                                           "buttons":[
+                                                    {
+                                                      "type": "postback",
+                                                      "title": "Click here to read more!",
+                                                      "payload": "Link to the recipe",
+                                                    },
                                                     {
                                                       "type":"element_share"
                                                     }              
