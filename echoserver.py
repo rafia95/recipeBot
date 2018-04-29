@@ -12,12 +12,12 @@ r = http.request('GET', 'http://www.tastespotting.com/browse/2')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
 response = requests.post(
-    "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
+    "https://graph.facebook.com/v2.6/me/thread_settings?access_token"+PAT,
     json={
           "setting_type":"call_to_actions",
           "thread_state":"new_thread",
           "call_to_actions": {
-            "payload": "first hand shake"
+            "payload": "USER_DEFINED_PAYLOAD"
         }
     })
 response = requests.post(
