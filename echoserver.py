@@ -63,6 +63,7 @@ def send_message(token, recipient, text):
                 msg=each_recipe['href'][16:-13]
                 print("the msg is ----------",msg[:-13])
             for each_img in each_recipe.find_all('img', alt=True):
+                msg2=each_img['src']
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             print("......", each_caption)
@@ -78,7 +79,7 @@ def send_message(token, recipient, text):
                               "elements":[
                                          {
                                           "title":msg,
-                                          "image_url":"https://www.goowi.com/faces/javax.faces.resource/images/logo.png",
+                                          "image_url":msg2,
                                           "buttons":[
                                                     {
                                                       "type":"element_share"
