@@ -113,7 +113,7 @@ def send_message(token, recipient, text):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":msg3,
+                                          "title":retrieving_data.msg3,
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
