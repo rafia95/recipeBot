@@ -65,7 +65,9 @@ def handle_messages():
   payload = request.get_data()
   print(payload)
   print("calling retrieving_data func")
+  print("printing msg3 here",msg3)
   retrieving_data()
+  print("printing msg3 there",msg3)
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
     send_message(PAT, sender, message)
@@ -102,7 +104,7 @@ def retrieving_data():
             print("......msg3", each_caption, msg3)
 			
 			
-def send_message(token, recipient, text):
+def send_message(token, recipient, text,msg,msg2,msg3):
       """Send the message text to recipient with id recipient.
       """
       print("the msg3 is ",msg3)
