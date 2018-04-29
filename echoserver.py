@@ -80,10 +80,10 @@ def messaging_events(payload):
       yield event["sender"]["id"], "I can't echo this"
 
 def retrieving_data():
-  """Send the recipe and increment the counter to send different each time"""
-   r = http.request('GET', 'http://www.tastespotting.com/browse/1')
+    """Send the recipe and increment the counter to send different each time"""
+    req = http.request('GET', 'http://www.tastespotting.com/browse/1')
     msg=""
-    data = BeautifulSoup(r.data,'html.parser')
+    data = BeautifulSoup(req.data,'html.parser')
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         for each_recipe in each_div.find_all('a', href=True):
             print("recipe link :",each_recipe['href'])
