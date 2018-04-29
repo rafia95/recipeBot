@@ -6,9 +6,7 @@ import urllib3
 app = Flask(__name__)
 
 PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUPKNB1KP9ZCbZCDbNc6ouUfTzaYJqJk7ne5XSohgxnjT6zV31MFYtyBnJIpcbl3jqAUQbZAcOzZB2XIJgl5ySRatxiPwZAjZADLmHNAZDZD'
-msg3=""
-msg=""
-msg2=""
+
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
@@ -64,10 +62,6 @@ def handle_messages():
   print("Handling Messages")
   payload = request.get_data()
   print(payload)
-  print("calling retrieving_data func")
-  print("printing msg3 here",msg3)
-  retrieving_data()
-  print("printing msg3 there",msg3)
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
     send_message(PAT, sender, message)
@@ -100,14 +94,17 @@ def retrieving_data():
                 msg2=each_img['src']
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
-            msg3=each_caption
+            retrieving_data.msg3=each_caption
             print("......msg3", each_caption, msg3)
 			
 			
 def send_message(token, recipient, text,msg,msg2,msg3):
       """Send the message text to recipient with id recipient.
       """
-      print("the msg3 is ",msg3)
+      print("calling retrieving_data func")
+      print("printing msg3 here",retrieving_data.msg3)
+      retrieving_data()
+      print("printing msg3 there",retrieving_data.msg3)
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
@@ -119,7 +116,7 @@ def send_message(token, recipient, text,msg,msg2,msg3):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":msg3,
+                                          "title":retrieving_data.msg3,
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
