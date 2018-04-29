@@ -79,7 +79,7 @@ def send_message(token, recipient, text):
                               "elements":[
                                          {
                                           "title":msg,
-                                          "image_url":msg2,
+                                          "image_url":msg,
                                           "buttons":[
                                                     {
                                                       "type":"element_share"
