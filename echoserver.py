@@ -105,6 +105,7 @@ def retrieving_data():
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
       """
+	  print("the msg3 is ",msg3)
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
