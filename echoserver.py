@@ -114,9 +114,9 @@ def send_message(token, recipient, text):
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
-                                                      "type": "postback",
+                                                      "type": "web-url",
                                                       "title": "Click here to read more!",
-                                                      "payload": "Link to the recipe",
+                                                      "url": msg,
                                                     },
                                                     {
                                                       "type":"element_share"
