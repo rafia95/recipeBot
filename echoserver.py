@@ -99,7 +99,7 @@ def retrieving_data():
             print("......", each_caption)
 			
 			
-def send_message(token, recipient, text):
+def send_message(token, recipient, text,retrieving_data()):
       """Send the message text to recipient with id recipient.
       """
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
@@ -113,7 +113,7 @@ def send_message(token, recipient, text):
                               "template_type":"generic",
                               "elements":[
                                          {
-                                          "title":retrieving_data().msg3,
+                                          "title":retrieving_data.msg3,
                                           "image_url":msg2,
                                           "buttons":[
                                                     {
