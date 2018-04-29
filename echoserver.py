@@ -64,6 +64,7 @@ def handle_messages():
   print(payload)
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
+    retrieving_data()
     send_message(PAT, sender, message)
   return "ok"
 
@@ -99,7 +100,7 @@ def retrieving_data():
             print("......", each_caption)
 			
 			
-def send_message(token, recipient, text,retrieving_data()):
+def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
       """
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
