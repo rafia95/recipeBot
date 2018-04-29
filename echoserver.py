@@ -98,7 +98,7 @@ def retrieving_data():
             print("......msg3", each_caption, msg3)
 			
 			
-def send_message(token, recipient, text,msg,msg2,msg3):
+def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
       """
       print("calling retrieving_data func")
