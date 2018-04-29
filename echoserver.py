@@ -70,8 +70,26 @@ def send_message(token, recipient, text):
       params={"access_token": token},
       data=json.dumps({
         "recipient": {"id": recipient},
-        "message": {"text": msg}
-      }),
+        "message":{
+                    "attachment":{
+                              "type":"template",
+                              "payload":{
+                              "template_type":"generic",
+                              "elements":[
+                                         {
+                                          "title":"Goowi will contact you shortly with the answer :).",
+                                          "image_url":"https://www.goowi.com/faces/javax.faces.resource/images/logo.png",
+                                          "buttons":[
+                                                    {
+                                                      "type":"element_share"
+                                                    }              
+                                                    ]
+                                         }
+                                         ]
+                                        }
+                             }
+                           }
+                       }),
       headers={'Content-type': 'application/json'})
     if r.status_code != requests.codes.ok:
       print(r.text)
