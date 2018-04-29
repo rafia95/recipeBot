@@ -95,7 +95,6 @@ def retrieving_data():
                 print(each_img['src'])
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
-            print("......msg3", each_caption, msg3)
 			
 			
 def send_message(token, recipient, text):
