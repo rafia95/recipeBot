@@ -93,7 +93,7 @@ def retrieving_data():
             if each_recipe['href'].startswith('/click'):
                 retrieving_data.recipe_link=each_recipe['href'][16:-12]
                 array[i].append(retrieving_data.recipe_link)
-                print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
+               # print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
                 array[i].append(retrieving_data.msg2)
@@ -101,15 +101,14 @@ def retrieving_data():
             retrieving_data.msg3=each_caption
             array[i].append(retrieving_data.msg3)
         i += 1
-        print("i is",i)
-    print("ARRAY",array)
+       # print("i is",i)
+    #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
       """
       print("calling retrieving_data func")
       retrieving_data()
-      print("printing msg3 there",retrieving_data.msg3)
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
@@ -140,8 +139,8 @@ def send_message(token, recipient, text):
                            }
                        }),
       headers={'Content-type': 'application/json'})
-      if r.status_code != requests.codes.ok:
-         print(r.text)
+     # if r.status_code != requests.codes.ok:
+     #    print(r.text)
 
 if __name__ == '__main__':
   app.run()
