@@ -5,7 +5,7 @@ import requests
 import urllib3
 app = Flask(__name__)
 
-PAT = 'EAAFDVWHFI8gBAO66TFhEEzhO3hgCeJcR4Mbl6uFZAAGED2asUFUDlSoDYQliguJQHzQQ1bUPKNB1KP9ZCbZCDbNc6ouUfTzaYJqJk7ne5XSohgxnjT6zV31MFYtyBnJIpcbl3jqAUQbZAcOzZB2XIJgl5ySRatxiPwZAjZADLmHNAZDZD'
+PAT = 'EAADNnJuZBxKEBAIZC5Inwjxr8UX7Iu2uE3kmythbsRHeFkOCJSgaynpYpBpNPmrnzngaeZC59ENMEQ7MuxYJuYiwpiPp2QxbMcxMnVMYbKV3PwZAfRkk66QooJRmb4Ohab2Sx4YBQGuyP9jmgxyCaMLYqNV37awokpZBYUa51XAZDZD'
 
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
@@ -50,7 +50,7 @@ def handle_verification():
   print("Handling Verification.")
   payload = request.get_data()
   print(payload)
-  if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
+  if request.args.get('hub.verify_token', '') == 'recipe-token':
     print("Verification successful!")
     return request.args.get('hub.challenge', '')
   else:
