@@ -87,7 +87,6 @@ def retrieving_data():
     #creating array
     array=[]
     i=0
-    global totalSentRecipesCount
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         array.append([])
         for each_recipe in each_div.find_all('a', href=True):
@@ -104,8 +103,7 @@ def retrieving_data():
             array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-        totalSentRecipesCount += 1
-        print("totalSentRecipesCount " ,totalSentRecipesCount)
+
     #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
