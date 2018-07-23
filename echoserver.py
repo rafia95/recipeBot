@@ -9,6 +9,7 @@ PAT = 'EAADNnJuZBxKEBAIZC5Inwjxr8UX7Iu2uE3kmythbsRHeFkOCJSgaynpYpBpNPmrnzngaeZC5
 
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
+totalSentRecipesCount=0
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
 response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
@@ -92,15 +93,16 @@ def retrieving_data():
             """links starting with /clicks are the links of recipe to their original sites, so just retrieve those links"""
             if each_recipe['href'].startswith('/click'):
                 retrieving_data.recipe_link=each_recipe['href'][16:-12]
-                array[i].append(retrieving_data.recipe_link)
+                array[totalSentRecipesCount].append(retrieving_data.recipe_link)
                # print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
-                array[i].append(retrieving_data.msg2)
+                array[totalSentRecipesCount].append(retrieving_data.msg2)
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
-            array[i].append(retrieving_data.msg3)
+            array[totalSentRecipesCount].append(retrieving_data.msg3)
         i += 1
+        totalSentRecipesCount += 1
        # print("i is",i)
     #print("ARRAY",array)
 			
