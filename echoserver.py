@@ -16,7 +16,7 @@ response = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile?a
           "get_started":{
           "payload":"GET_STARTED_PAYLOAD"
                         }
-        }
+        })
 response = requests.post(
     "https://graph.facebook.com/v2.6/me/thread_settings?access_token"+PAT,
     json={
