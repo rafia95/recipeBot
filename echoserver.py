@@ -118,7 +118,7 @@ def send_message(token, recipient, text):
                                           "buttons":[
                                                     {
                                                       "type": "web_url",
-                                                      "title": "Click here to read more!",
+                                                      "title": "Read more!",
                                                       "url": retrieving_data.msg,
                                                     },
                                                     {
