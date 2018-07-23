@@ -11,7 +11,11 @@ http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
-
+{ 
+  "get_started":{
+    "payload":"<GET_STARTED_PAYLOAD>"
+  }
+}
 response = requests.post(
     "https://graph.facebook.com/v2.6/me/thread_settings?access_token"+PAT,
     json={
