@@ -88,7 +88,7 @@ def retrieving_data():
             print("recipe link :",each_recipe['href'])
             print(each_recipe['href'].startswith('/click'))
             if each_recipe['href'].startswith('/click'):
-                retrieving_data.msg=each_recipe['href'][16:-13]
+                retrieving_data.msg=each_recipe['href'][16:-12]
                 print("the msg is ----------",retrieving_data.msg,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
