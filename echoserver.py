@@ -87,18 +87,22 @@ def retrieving_data():
     array=[]
     i=0
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
+        array.append([])
         for each_recipe in each_div.find_all('a', href=True):
             """links starting with /clicks are the links of recipe to their original sites, so just retrieve those links"""
             if each_recipe['href'].startswith('/click'):
                 retrieving_data.recipe_link=each_recipe['href'][16:-12]
+                array[i].append(retrieving_data.recipe_link)
                 print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
+                array[i].append(retrieving_data.msg2)
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
+            array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-			
+	print("ARRAY",array)
 			
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
