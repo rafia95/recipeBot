@@ -11,7 +11,15 @@ http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
-
+response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
+   json={ 
+          "setting_type":"call_to_actions",
+		  "thread_state":"new_thread",
+		  "call_to_actions":[
+                             {"payload":"GET_STARTED_PAYLOAD"
+                             }
+							]
+        })
 
 response = requests.post(
     "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
@@ -50,12 +58,6 @@ def handle_verification():
     return 'Error, wrong validation token'
 
 @app.route('/', methods=['POST'])
-response = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
-   json={ 
-          "get_started":{
-          "payload":"GET_STARTED_PAYLOAD"
-                        }
-        })
 def handle_messages():
   print("Handling Messages")
   payload = request.get_data()
