@@ -83,17 +83,21 @@ def retrieving_data():
     """Send the recipe and increment the counter to send different each time"""
     req = http.request('GET', 'http://www.tastespotting.com/browse/1')
     data = BeautifulSoup(req.data,'html.parser')
+    #creating array
+    array=[]
+    i=0
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         for each_recipe in each_div.find_all('a', href=True):
-            print("recipe link :",each_recipe['href'])
-            print(each_recipe['href'].startswith('/click'))
+            """links starting with /clicks are the links of recipe to their original sites, so just retrieve those links"""
             if each_recipe['href'].startswith('/click'):
-                retrieving_data.msg=each_recipe['href'][16:-12]
-                print("the msg is ----------",retrieving_data.msg,each_recipe['href'])
+                retrieving_data.recipe_link=each_recipe['href'][16:-12]
+                print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
+        i += 1
+        print("i is",i)
 			
 			
 def send_message(token, recipient, text):
@@ -119,7 +123,7 @@ def send_message(token, recipient, text):
                                                     {
                                                       "type": "web_url",
                                                       "title": "Read more!",
-                                                      "url": retrieving_data.msg,
+                                                      "url": retrieving_data.recipe_link,
                                                     },
                                                     {
                                                       "type":"element_share"
