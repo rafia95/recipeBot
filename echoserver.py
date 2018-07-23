@@ -101,11 +101,16 @@ def retrieving_data():
             retrieving_data.msg3=each_caption
             array[i].append(retrieving_data.msg3)
         i += 1
-        print("i is",i)
-    print("ARRAY",array)
+       # print("i is",i)
+    #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
+	  
+	  
+	  
+	  
+	  
       """
       print("calling retrieving_data func")
       retrieving_data()
