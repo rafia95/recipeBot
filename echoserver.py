@@ -9,7 +9,6 @@ PAT = 'EAADNnJuZBxKEBAIZC5Inwjxr8UX7Iu2uE3kmythbsRHeFkOCJSgaynpYpBpNPmrnzngaeZC5
 
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
-totalSentRecipesCount=0
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
 response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
@@ -103,8 +102,7 @@ def retrieving_data():
             array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-
-    #print("ARRAY",array)
+    print("ARRAY",array)
 			
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
