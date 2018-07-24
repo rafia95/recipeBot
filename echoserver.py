@@ -86,7 +86,6 @@ def retrieving_data():
     #creating array
     array=[]
     i=0
-    global count
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         array.append([])
         for each_recipe in each_div.find_all('a', href=True):
@@ -103,8 +102,9 @@ def retrieving_data():
             array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-        count = count + 1
-        print("count " ,count)
+        print("calling increment counter method")
+        increment_counter()
+        print("count " ,global count)
     #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
@@ -149,6 +149,9 @@ def send_message(token, recipient, text):
       headers={'Content-type': 'application/json'})
      # if r.status_code != requests.codes.ok:
      #    print(r.text)
-
+def increment_counter():
+    global count
+    count = count + 1
+    print ("count ",count)
 if __name__ == '__main__':
   app.run()
