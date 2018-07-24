@@ -103,7 +103,7 @@ def retrieving_data():
             array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-	    count += 1
+        count += 1
         print("count " ,count)
     #print("ARRAY",array)
 			
