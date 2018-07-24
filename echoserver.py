@@ -87,7 +87,9 @@ def retrieving_data():
     print("page_num is ",page_number)
     page_num=str(page_number)
     print("str version is ",page_num)
-    req = http.request('GET', 'http://www.tastespotting.com/browse/',page_num)
+    url = 'http://www.tastespotting.com/browse/',page_num
+    print("url ",url)
+    req = http.request('GET', url)
     data = BeautifulSoup(req.data,'html.parser')
     #creating array
     array=[]
