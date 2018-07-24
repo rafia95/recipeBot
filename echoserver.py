@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 PAT = 'EAADJQYB3nKABAK2F9MCFRG86MOEcNlQ2Nbm7TSPmWvZA9ZAx4xQ4nrLIiVzVY9Qf9FYKeEuE5NkNOWmk64bd2EYVCixlqbdBLKOELZANtfZARcG2NXLrQD9lawAkDAXZBTLnd2yM3Ux9rTYrv95W0KAuNFciYvL1ZCie3DeTipswZDZD'
 http = urllib3.PoolManager()
-r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
 response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
@@ -130,9 +129,6 @@ def send_message(token, recipient, text):
                                                       "type": "web_url",
                                                       "title": "Read more!",
                                                       "url": retrieving_data.recipe_link,
-                                                    },
-                                                    {
-                                                      "type":"element_share"
                                                     }              
                                                     ]
                                          }
