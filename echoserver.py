@@ -8,7 +8,6 @@ app = Flask(__name__)
 PAT = 'EAADJQYB3nKABAK2F9MCFRG86MOEcNlQ2Nbm7TSPmWvZA9ZAx4xQ4nrLIiVzVY9Qf9FYKeEuE5NkNOWmk64bd2EYVCixlqbdBLKOELZANtfZARcG2NXLrQD9lawAkDAXZBTLnd2yM3Ux9rTYrv95W0KAuNFciYvL1ZCie3DeTipswZDZD'
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
-global count
 count = 0
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
@@ -87,6 +86,7 @@ def retrieving_data():
     #creating array
     array=[]
     i=0
+    global count
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
         array.append([])
         for each_recipe in each_div.find_all('a', href=True):
@@ -103,7 +103,7 @@ def retrieving_data():
             array[i].append(retrieving_data.msg3)
         i += 1
         print("i is",i)
-        count += 1
+        count = count + 1
         print("count " ,count)
     #print("ARRAY",array)
 			
