@@ -103,7 +103,7 @@ def retrieving_data():
         i += 1
         print("i is",i)
         print("calling increment counter method")
-        increment_counter()
+        increment_counter(i)
     #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
@@ -148,9 +148,9 @@ def send_message(token, recipient, text):
       headers={'Content-type': 'application/json'})
      # if r.status_code != requests.codes.ok:
      #    print(r.text)
-def increment_counter():
+def increment_counter(j):
     global count
-    count = count + 1
+    count = j + 1
     print ("count ",count)
 if __name__ == '__main__':
   app.run()
