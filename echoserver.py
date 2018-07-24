@@ -104,7 +104,6 @@ def retrieving_data():
         print("i is",i)
         print("calling increment counter method")
         increment_counter()
-        print("count " ,global count)
     #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
