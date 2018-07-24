@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requests
+import random
 # get the urllib2 library, to fetch the web page
 import urllib3
 app = Flask(__name__)
@@ -81,7 +82,10 @@ def messaging_events(payload):
 
 def retrieving_data():
     """Send the recipe and increment the counter to send different each time"""
-    req = http.request('GET', 'http://www.tastespotting.com/browse/1')
+    for x in range(1):
+       page_number=random.randint(1,12000)
+    print("page_num is ",page_number)
+    req = http.request('GET', 'http://www.tastespotting.com/browse/',page_number)
     data = BeautifulSoup(req.data,'html.parser')
     #creating array
     array=[]
