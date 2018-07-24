@@ -108,7 +108,6 @@ def retrieving_data():
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
             array[i].append(retrieving_data.msg3)
-        i += 1
         print("i is",i)
         print("calling increment counter method")
         increment_counter(i)
