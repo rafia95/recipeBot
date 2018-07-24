@@ -85,7 +85,8 @@ def retrieving_data():
     for x in range(1):
        page_number=random.randint(1,12000)
     print("page_num is ",page_number)
-    req = http.request('GET', 'http://www.tastespotting.com/browse/',page_number)
+    page_num=str(page_number)
+    req = http.request('GET', 'http://www.tastespotting.com/browse/',page_num)
     data = BeautifulSoup(req.data,'html.parser')
     #creating array
     array=[]
