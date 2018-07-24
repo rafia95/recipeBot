@@ -6,21 +6,21 @@ import urllib3
 app = Flask(__name__)
 
 PAT = 'EAADJQYB3nKABAK2F9MCFRG86MOEcNlQ2Nbm7TSPmWvZA9ZAx4xQ4nrLIiVzVY9Qf9FYKeEuE5NkNOWmk64bd2EYVCixlqbdBLKOELZANtfZARcG2NXLrQD9lawAkDAXZBTLnd2yM3Ux9rTYrv95W0KAuNFciYvL1ZCie3DeTipswZDZD'
-
+count=0
 http = urllib3.PoolManager()
 r = http.request('GET', 'http://www.tastespotting.com/browse/1')
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
-
-response = requests.post(
-    "https://graph.facebook.com/v2.6/me/thread_settings?access_token"+PAT,
-    json={
+response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
+   json={ 
           "setting_type":"call_to_actions",
-          "thread_state":"new_thread",
-          "call_to_actions": {
-            "payload": "USER_DEFINED_PAYLOAD"
-        }
-    })
+		  "thread_state":"new_thread",
+		  "call_to_actions":[
+                             {"payload":"GET_STARTED_PAYLOAD"
+                             }
+							]
+        })
+
 response = requests.post(
     "https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
     json={
@@ -81,27 +81,42 @@ def messaging_events(payload):
 
 def retrieving_data():
     """Send the recipe and increment the counter to send different each time"""
-    req = http.request('GET', 'http://www.tastespotting.com/browse/2')
+    req = http.request('GET', 'http://www.tastespotting.com/browse/1')
     data = BeautifulSoup(req.data,'html.parser')
+    #creating array
+    array=[]
+    i=0
+    global count
     for each_div in data.find_all("div", { "class": "trendspotted-item"}):
+        array.append([])
         for each_recipe in each_div.find_all('a', href=True):
-            print("recipe link :",each_recipe['href'])
-            print(each_recipe['href'].startswith('/click'))
+            """links starting with /clicks are the links of recipe to their original sites, so just retrieve those links"""
             if each_recipe['href'].startswith('/click'):
-                retrieving_data.msg=each_recipe['href'][16:-13]
-                print("the msg is ----------",retrieving_data.msg[:-13])
+                retrieving_data.recipe_link=each_recipe['href'][16:-12]
+                array[i].append(retrieving_data.recipe_link)
+               # print("the recipe_link is ----------",retrieving_data.recipe_link,each_recipe['href'])
             for each_img in each_recipe.find_all('img', alt=True):
                 retrieving_data.msg2=each_img['src']
+                array[i].append(retrieving_data.msg2)
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.msg3=each_caption
-			
+            array[i].append(retrieving_data.msg3)
+        i += 1
+        print("i is",i)
+	    count += 1
+        print("count " ,count)
+    #print("ARRAY",array)
 			
 def send_message(token, recipient, text):
       """Send the message text to recipient with id recipient.
+	  
+	  
+	  
+	  
+	  
       """
       print("calling retrieving_data func")
       retrieving_data()
-      print("printing msg3 there",retrieving_data.msg3)
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
       params={"access_token": token},
       data=json.dumps({
@@ -119,7 +134,7 @@ def send_message(token, recipient, text):
                                                     {
                                                       "type": "web_url",
                                                       "title": "Read more!",
-                                                      "url": retrieving_data.msg,
+                                                      "url": retrieving_data.recipe_link,
                                                     },
                                                     {
                                                       "type":"element_share"
@@ -132,8 +147,8 @@ def send_message(token, recipient, text):
                            }
                        }),
       headers={'Content-type': 'application/json'})
-      if r.status_code != requests.codes.ok:
-         print(r.text)
+     # if r.status_code != requests.codes.ok:
+     #    print(r.text)
 
 if __name__ == '__main__':
   app.run()
