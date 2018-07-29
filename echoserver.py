@@ -81,7 +81,7 @@ def messaging_events(payload):
 def retrieving_data():
     """Send the recipe and increment the counter to send different each time"""
     for x in range(1):
-       page_number=random.randint(1,12000)
+       page_number=random.randint(1,500)
     print("page_num is ",page_number)
     page_num=str(page_number)
     print("str version is ",page_num)
