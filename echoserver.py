@@ -73,7 +73,7 @@ def messaging_events(payload):
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
-    if (event.postback):
+    if (event.type == "postback"):
       if (event.postback.payload == "send_recipe_payload"):
          yield event["sender"]["id"], "send back a rec"
     else:
