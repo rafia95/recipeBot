@@ -23,7 +23,7 @@ response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?acc
    json={ 
           "setting_type":"greeting",
 		  "greeting":[
-                             {"locale":"default"
+                             {"locale":"default",
                               "text":"A Recipe a Day offers recipes taken from food site TasteSpotting.com and makes it easier for you to cook different meals"
                              }
 							]
