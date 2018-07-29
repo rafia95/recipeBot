@@ -74,7 +74,7 @@ def messaging_events(payload):
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
      if "postback" in event and "payload" in event["message"]:
-        yield event["sender"]["id"], "sending recipe"
+        yield event["sender"]["id"],event["postback"]["payload"].encode('unicode_escape')
      else:
        yield event["sender"]["id"], "I can't echo this"
 
