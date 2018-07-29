@@ -63,7 +63,7 @@ def handle_messages():
   print(payload)
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
-    send_message(PAT, sender, message)
+    send_message( sender)
   return "ok"
 
 def messaging_events(payload):
@@ -73,6 +73,10 @@ def messaging_events(payload):
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
+    if (event.postback):
+      if (event.postback.payload === "send_recipe_payload"):
+         yield event["sender"]["id"], "send back a rec"
+    else:
     if "message" in event and "text" in event["message"]:
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
@@ -101,18 +105,13 @@ def retrieving_data():
             retrieving_data.msg3=each_caption
  
 			
-def send_message(token, recipient, text):
+def send_message( recipient):
       """Send the message text to recipient with id recipient.
-	  
-	  
-	  
-	  
-	  
       """
       print("calling retrieving_data func")
       retrieving_data()
       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-      params={"access_token": token},
+      params={"access_token": PAT},
       data=json.dumps({
         "recipient": {"id": recipient},
         "message":{
