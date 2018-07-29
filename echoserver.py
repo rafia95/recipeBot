@@ -74,7 +74,7 @@ def messaging_events(payload):
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
     if (event.postback):
-      if (event.postback.payload === "send_recipe_payload"):
+      if (event.postback.payload == "send_recipe_payload"):
          yield event["sender"]["id"], "send back a rec"
     else:
     if "message" in event and "text" in event["message"]:
