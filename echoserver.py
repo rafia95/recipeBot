@@ -29,9 +29,9 @@ response = requests.post(
                                "composer_input_disabled": False,
                                "call_to_actions":[
                                                   {
-                                                    "type":"web_url",
-                                                    "title":"Latest News",
-                                                    "url":"https://www.messenger.com/",
+                                                    "type":"postback",
+                                                    "title":"More Recipes",
+                                                    "payload":"send_recipe_payload",
                                                     "webview_height_ratio":"full"
                                                    }
 												  ]
