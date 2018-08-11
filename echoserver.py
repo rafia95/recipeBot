@@ -84,7 +84,7 @@ def messaging_events(payload):
      if "message" in event and "text" in event["message"]:
         yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
      elif "postback" in event and "payload" in event["postback"]:
-        yield event["sender"]["id"], event["postback"]["payload"].encode('unicode_escape')
+        yield event["sender"]["id"], event["postback"]["payload"].encode('string_escape')
      else:
        yield event["sender"]["id"], "I can't echo this"
 
