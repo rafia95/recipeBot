@@ -19,7 +19,7 @@ response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?acc
                              }
 							]
         })
-response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
+response = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
    json={ 
           "setting_type":"greeting",
 		  "greeting":[
@@ -39,7 +39,7 @@ response = requests.post(
                                "call_to_actions":[
                                                   {
                                                     "type":"postback",
-                                                    "title":"More Recipes",
+                                                    "title":"Another Recipe",
                                                     "payload":"send_recipe_payload",
                                                     "webview_height_ratio":"full"
                                                    }
