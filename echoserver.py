@@ -115,7 +115,7 @@ def send_message( recipient,payload):
       """Send the message text to recipient with id recipient.
       """
       print("calling retrieving_data func , plus paylod ",payload)
-      if payload.encode('unicode_escape') == "GET_STARTED_PAYLOAD":
+      if payload.decode("utf-8") == "GET_STARTED_PAYLOAD":
        print("getting the different payload")
       else:
        print("getting the recipe payload")
