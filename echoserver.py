@@ -115,36 +115,40 @@ def send_message( recipient,payload):
       """Send the message text to recipient with id recipient.
       """
       print("calling retrieving_data func , plus paylod ",payload)
-      retrieving_data()
-      r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-      params={"access_token": PAT},
-      data=json.dumps({
-        "recipient": {"id": recipient},
-        "message":{
-                    "attachment":{
-                              "type":"template",
-                              "payload":{
-                              "template_type":"generic",
-                              "elements":[
-                                         {
-                                          "title":retrieving_data.msg3,
-                                          "image_url":retrieving_data.msg2,
-                                          "buttons":[
-                                                    {
-                                                      "type": "web_url",
-                                                      "title": "Read more!",
-                                                      "url": retrieving_data.recipe_link,
-                                                    }              
-                                                    ]
+      if payload == "GET_STARTED_PAYLOAD":
+         print("getting the different payload")
+      else:
+       print("getting the recipe payload")
+       retrieving_data()
+       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+       params={"access_token": PAT},
+       data=json.dumps({
+         "recipient": {"id": recipient},
+         "message":{
+                     "attachment":{
+                               "type":"template",
+                               "payload":{
+                               "template_type":"generic",
+                               "elements":[
+                                          {
+                                           "title":retrieving_data.msg3,
+                                           "image_url":retrieving_data.msg2,
+                                           "buttons":[
+                                                     {
+                                                       "type": "web_url",
+                                                       "title": "Read more!",
+                                                       "url": retrieving_data.recipe_link,
+                                                     }              
+                                                     ]
+                                          }
+                                          ]
                                          }
-                                         ]
-                                        }
-                             }
-                           }
-                       }),
-      headers={'Content-type': 'application/json'})
-     # if r.status_code != requests.codes.ok:
-     #    print(r.text)
+                              }
+                            }
+                        }),
+       headers={'Content-type': 'application/json'})
+      # if r.status_code != requests.codes.ok:
+      #    print(r.text)
 
 if __name__ == '__main__':
   app.run()
