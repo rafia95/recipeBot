@@ -117,6 +117,15 @@ def send_message( recipient,payload):
       print("calling retrieving_data func , plus paylod ",payload)
       if payload.decode("utf-8") == "GET_STARTED_PAYLOAD":
        print("getting the different payload")
+       r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+       params={"access_token": PAT},
+       data=json.dumps({
+         "recipient": {"id": recipient},
+         "message":{
+                     "text":"Welcome to Recipes page. You can get different recipes here to make ur cooking more fun"
+                            }
+                        }),
+       headers={'Content-type': 'application/json'})
       else:
        print("getting the recipe payload")
        retrieving_data()
