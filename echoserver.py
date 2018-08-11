@@ -47,7 +47,6 @@ response = requests.post(
                             },
                             {
                                "locale": "zh_CN",
-                               "composer_input_disabled": True
                             }
                             ]
                              })
