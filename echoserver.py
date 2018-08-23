@@ -72,7 +72,7 @@ def handle_messages():
   print("Handling Messages")
   payload = request.get_data()
   print(payload)
-  appkey = "bca6c5f1a8d5d5eb0ca744fe04528b84"
+  appkey = b'bca6c5f1a8d5d5eb0ca744fe04528b84'
   digester = hmac.new(appkey,payload,hashlib.sha1)
   generated_signature = "sha1="+digester.hexdigest()
   print (generated_signature)
