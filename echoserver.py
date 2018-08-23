@@ -4,6 +4,8 @@ import requests
 import random
 # get the urllib2 library, to fetch the web page
 import urllib3
+import hashlib
+import hmac
 app = Flask(__name__)
 
 PAT = 'EAADJQYB3nKABAK2F9MCFRG86MOEcNlQ2Nbm7TSPmWvZA9ZAx4xQ4nrLIiVzVY9Qf9FYKeEuE5NkNOWmk64bd2EYVCixlqbdBLKOELZANtfZARcG2NXLrQD9lawAkDAXZBTLnd2yM3Ux9rTYrv95W0KAuNFciYvL1ZCie3DeTipswZDZD'
