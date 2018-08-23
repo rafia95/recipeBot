@@ -10,6 +10,7 @@ PAT = 'EAADJQYB3nKABAK2F9MCFRG86MOEcNlQ2Nbm7TSPmWvZA9ZAx4xQ4nrLIiVzVY9Qf9FYKeEuE
 http = urllib3.PoolManager()
 # import beautifulsoup to parse data
 from bs4 import BeautifulSoup
+""" """
 response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?access_token="+PAT,
    json={ 
           "setting_type":"call_to_actions",
@@ -17,7 +18,7 @@ response = requests.post("https://graph.facebook.com/v2.6/me/thread_settings?acc
 		  "call_to_actions":[
                              {"payload":"GET_STARTED_PAYLOAD"
                              }
-							]
+							] 
         })
 response = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token="+PAT,
    json={ 
@@ -39,7 +40,7 @@ response = requests.post(
                                "call_to_actions":[
                                                   {
                                                     "type":"postback",
-                                                    "title":"Another Recipe",
+                                                    "title":"Get a Recipe",
                                                     "payload":"send_recipe_payload",
                                                     "webview_height_ratio":"full"
                                                    }
@@ -69,6 +70,12 @@ def handle_messages():
   print("Handling Messages")
   payload = request.get_data()
   print(payload)
+  appkey = "myappkey007"
+  digester = hmac.new(hiddenkey,payload,hashlib.sha1)
+  generated_signature = "sha1="+digester.hexdigest()
+  print generated_signature
+  signature = request.headers.get("X-Hub-Signature")
+  print signature
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
     send_message( sender,message)
