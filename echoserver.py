@@ -73,9 +73,9 @@ def handle_messages():
   appkey = "myappkey007"
   digester = hmac.new(hiddenkey,payload,hashlib.sha1)
   generated_signature = "sha1="+digester.hexdigest()
-  print generated_signature
+  print (generated_signature)
   signature = request.headers.get("X-Hub-Signature")
-  print signature
+  print (signature)
   for sender, message in messaging_events(payload):
     print("Incoming from %s: %s" % (sender, message))
     send_message( sender,message)
