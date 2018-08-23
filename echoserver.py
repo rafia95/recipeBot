@@ -73,7 +73,7 @@ def handle_messages():
   payload = request.get_data()
   print(payload)
   appkey = "bca6c5f1a8d5d5eb0ca744fe04528b84"
-  digester = hmac.new(b'appkey',payload,hashlib.sha1)
+  digester = hmac.new(appkey,payload,hashlib.sha1)
   generated_signature = "sha1="+digester.hexdigest()
   print (generated_signature)
   signature = request.headers.get("X-Hub-Signature")
