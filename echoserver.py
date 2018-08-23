@@ -81,9 +81,9 @@ def handle_messages():
   if signature == generated_signature:
      #Request is coming from facebook
      for sender, message in messaging_events(payload):
-     print("Incoming from %s: %s" % (sender, message))
-     send_message( sender,message)
-   return "ok"
+      print("Incoming from %s: %s" % (sender, message))
+      send_message( sender,message)
+     return "ok"
   else: 
      #Request not from facebook as signatures dont match
      return "Bad Request"
