@@ -1,3 +1,5 @@
+""" THIS APP IS USED TO CREATE A FACEBOOK MESSENGER BOT, AUTOMATIC MESSAGING SERVICE PROVIDED 
+    TO THE FACEBOOK USERS TO ACCESS THE RECIPES FROM THE TASTESPOTTING.COM WEBISTE ON JUST ONE CLICK"""
 from flask import Flask, request
 import json
 import requests
@@ -59,7 +61,6 @@ response = requests.post(
 """ get request to verify the messenger application token """
 @app.route('/', methods=['GET'])
 def handle_verification():
-  print("Handling Verification.")
   if request.args.get('hub.verify_token', '') == 'recipe-token':
     print("Verification successful!")
     return request.args.get('hub.challenge', '')
@@ -70,7 +71,6 @@ def handle_verification():
     calls another method to send a response to user """
 @app.route('/', methods=['POST'])
 def handle_messages():
-  print("Handling Messages")
   payload = request.get_data()
   appkey = b'bca6c5f1a8d5d5eb0ca744fe04528b84'
   digester = hmac.new(appkey,payload,hashlib.sha1)
@@ -159,9 +159,6 @@ def retrieving_data():
                 retrieving_data.recipe_image=each_img['src']
         for each_caption in each_div.find("p", { "class": "photo_caption"}):
             retrieving_data.recipe_title=each_caption
- 
-			
-
 
 if __name__ == '__main__':
   app.run()
